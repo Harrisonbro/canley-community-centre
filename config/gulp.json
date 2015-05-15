@@ -1,0 +1,4 @@
+{
+    "browserSyncProxy": "ccc.dev:8888",
+    "browserSync": true
+}
