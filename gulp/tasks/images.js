@@ -20,6 +20,10 @@ var gulp        = require('gulp'),
     rename      = require('gulp-rename'),
     _           = require('underscore');
 
+var imagesSrcs = [
+    config.images_src + '/splash.jpg'
+];
+
 var imageSizes = [
     300,
     700,
@@ -29,7 +33,7 @@ var imageSizes = [
 
 gulp.task('images', function() {
     _.each(imageSizes, function(imageSize) {
-        gulp.src(config.banner_images_src + '/**/*.jpg')
+        gulp.src(imagesSrcs)
             .pipe(imageResize({ width : imageSize }))
             .pipe(imagemin({
                 optimizationLevel: 3,

@@ -23,11 +23,12 @@ gulp.task('watch', ['browser-sync'], function () {
     /**
      * Build images when src image files change
      */
-    gulp.watch(config.banner_images_src + '/**/*.{png,jpg,jpeg,gif}', ['images']);
+    gulp.watch(config.images_src + '/**/*.{png,jpg,jpeg,gif}', ['images']);
 
     /**
-     * Reload browser when PHP files in the theme folder change
+     * Reload browser when PHP or HTML files change
      */
-    gulp.watch(config.theme + '/**/*.php', ['browser-sync--reload']);
+    gulp.watch('./**/*.{php,html}', ['browser-sync--reload']); return;
+    gulp.watch('./*.{php,html}', ['browser-sync--reload']);
 
 });

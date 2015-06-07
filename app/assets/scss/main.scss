@@ -1,0 +1,15 @@
+/**
+ * Box model
+ */
+* {
+    &,
+    &:before,
+    &:after {
+        box-sizing: border-box;
+        *behavior: url(/css/boxsizing.htc);
+    }
+}
+
+* {
+    color: blue;
+}

@@ -7,4 +7,5 @@ module.exports = {
     js_build:       'public/js',
     images_src:     'app/assets/images',
     images_build:   'public/images',
+    node_src:       'node_modules',
 };
