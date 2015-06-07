@@ -38,4 +38,6 @@ var sassErrorCb = function(error) {
     gutil.log( gutil.colors.red('[Libsass error] "' + error.message + '"'),
                gutil.colors.cyan("in " + error.file + ":"+ error.line) );
     gutil.beep();
+
+    this.emit('end');
 };
