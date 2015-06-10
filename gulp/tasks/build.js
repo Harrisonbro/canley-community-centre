@@ -10,6 +10,6 @@ gulp.task('build', [
     'build-modernizr',
     'build-normalize-css',
     'build-box-sizing-polyfill',
-    'build-css',
+    'css',
     'js',
 ]);

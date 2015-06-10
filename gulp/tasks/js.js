@@ -12,6 +12,8 @@ var gulp        = require('gulp'),
 
 gulp.task('js', function () {
 
-    console.log( "runnign JS" );
+    gulp.src('./node_modules/fg-loadjs/loadJS.js')
+        .pipe(uglify())
+        .pipe(gulp.dest(config.js_build));
 
 });

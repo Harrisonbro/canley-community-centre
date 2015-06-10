@@ -17,18 +17,16 @@ gulp.task('sass', ['css']);
 gulp.task('css', function() {
     gulp.src(config.css_src + '/**/*.scss')
         .pipe(libsass({
-            includePaths: [config.bower_src],
+            includePaths: [
+                config.bower_src + '/breakpoint-sass/stylesheets'
+            ],
             outputStyle: 'expanded',
             sourceComments: 'normal',
             onError: sassErrorCb
         }))
         .pipe(autoprefix('last 10 version'))
         .pipe(reload({stream:true}))
-        .pipe(gulp.dest(config.css_build));
-});
-
-gulp.task('build-css', ['css'], function () {
-    return gulp.src(config.css_build + '/**/*.css')
+        .pipe(gulp.dest(config.css_build))
         .pipe(minifyCSS({compatibility: 'ie8'}))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(config.css_build));

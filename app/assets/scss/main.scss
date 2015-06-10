@@ -1,2 +1,56 @@
 @import 'normalize';
+@import 'breakpoint';
 
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    background: black
+}
+
+// For older browsers
+.splashImg {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 100%;
+    width: auto;
+}
+
+// For newer browsers
+html.backgroundsize {
+    background: black url("/public/images/splash-300.jpg?src=css") no-repeat center center fixed;
+    background-size: cover;
+
+    .splashImg {
+        background: none;
+        display: none;
+    }
+}
+
+$aspectRatio: 0.6125;
+
+@each $size in 0px, 400px, 600px, 800px, 1000px, 1200px, 1400px {
+    @include breakpoint((('min-width' $size), ('min-height' $size*$aspectRatio))) {
+        // If we're passed a list just grab the size value from it
+        @if type_of($size) == "list" {
+            $size: nth($size, 1);
+        }
+
+        @if $size == 0px {
+            $size: 200px; // Default smallest size for small screens
+        }
+
+        html.backgroundsize {
+            background-image: url("/public/images/splash-#{strip-unit($size + 200)}.jpg?src=css");
+        }
+    }
+}

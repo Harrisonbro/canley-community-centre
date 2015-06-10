@@ -11,7 +11,9 @@
     ],
     "uglify": true,
     "tests": [
-        "backgroundsize"
+        "backgroundsize",
+        "srcset",
+        "sizes"
     ],
     "excludeTests": [ ],
     "crawl": false,

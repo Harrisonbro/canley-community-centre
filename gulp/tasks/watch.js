@@ -26,9 +26,14 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(config.images_src + '/**/*.{png,jpg,jpeg,gif}', ['images']);
 
     /**
+     * Recompile HTML src when it changes
+     */
+    gulp.watch('./indexSrc.html', ['build-html']);
+
+    /**
      * Reload browser when PHP or HTML files change
      */
-    gulp.watch('./**/*.{php,html}', ['browser-sync--reload']); return;
-    gulp.watch('./*.{php,html}', ['browser-sync--reload']);
+    gulp.watch('./index.html', ['browser-sync--reload']);
+    // gulp.watch('./*.{php,html}', ['browser-sync--reload']);
 
 });
