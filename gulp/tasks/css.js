@@ -29,6 +29,7 @@ gulp.task('css', function() {
         .pipe(gulp.dest(config.css_build))
         .pipe(minifyCSS({compatibility: 'ie8'}))
         .pipe(rename({suffix: '.min'}))
+        .pipe(reload({stream:true}))
         .pipe(gulp.dest(config.css_build));
 });
 

@@ -1,8 +1,28 @@
 @import 'normalize';
 @import 'breakpoint';
+@import '../fonts/ss-standard/ss-standard';
+@import '../fonts/ss-social-regular/ss-social-regular';
+
+$sml: 20em;
+$med: 32em;
+$lrg: 50em;
 
 @function strip-unit($value) {
     @return $value / ($value * 0 + 1);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
 }
 
 html,
@@ -53,4 +73,137 @@ $aspectRatio: 0.6125;
             background-image: url("/public/images/splash-#{strip-unit($size + 200)}.jpg?src=css");
         }
     }
+}
+
+.logo {
+    margin: 0.5em;
+    max-width: 50%;
+
+    @include breakpoint($sml) {
+        margin: 1.25em;
+        max-width: 35%;
+    }
+}
+
+.strapline {
+    display: block;
+    margin: 0 0.5em 2em;
+    max-width: 100%;
+
+    @include breakpoint($sml) {
+        margin: 0 auto 3em;
+        max-width: 80%;
+    }
+
+    @include breakpoint($med) {
+        margin: 0 auto 4em;
+        max-width: 65%;
+    }
+}
+
+$text: mix(white, black, 95%);
+
+.content {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    max-width: 95%;
+    line-height: 1.2;
+
+    @include breakpoint($sml) {
+        max-width: 90%;
+        line-height: 1.3;
+    }
+
+    @include breakpoint($med) {
+        max-width: 80%;
+        line-height: 1.4;
+    }
+
+    @include breakpoint($lrg) {
+        max-width: 80%;
+    }
+
+    width: 30em;
+    color: $text;
+    text-shadow: 0 1px 1px black, 0 0 1em rgba(black, 0.5);
+
+    p {
+        margin: 0 0 0.8em 0;
+    }
+}
+
+a {
+    color: $text;
+    border-bottom: 1px solid mix($text, black, 80%);
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+        color: white;
+        border-color: white;
+    }
+}
+
+.content--main {
+    font-size: 1em;
+
+    @include breakpoint($sml) {
+        font-size: 1.25em;
+    }
+
+    @include breakpoint($med) {
+        font-size: 1.25em;
+    }
+
+    @include breakpoint($lrg) {
+        font-size: 1.5em;
+    }
+}
+
+.content--secondary {
+    font-size: 0.9em;
+}
+
+/* a */.contact-link,
+/* a */.social-link {
+    margin: 0 0.5em;
+    border: none;
+}
+
+/**
+ * Fix baseline for SymbolSet icons
+ */
+[class*=ss-]:before,
+[class*=ss-].right:after {
+    font-size: 0.85em;
+}
+
+[class*=ss-]:hover {
+    text-decoration: none;
+}
+
+[class*=ss-]:before {
+    position: relative;
+    top: 0.12em;
+    margin-right: 0.5em;
+}
+
+[class*=ss-].right:after {
+    position: relative;
+    top: 0.17em;
+    margin-left: 0.5em;
+}
+
+[class*=ss-].ss-centered:before {
+    margin-right: 0;
+}
+
+[class*=ss-].right.ss-centered:after {
+    margin-left: 0;
+}
+
+[class*=ss-social]:before,
+[class*=ss-social].right:after {
+    font-size: 0.85em;
 }
