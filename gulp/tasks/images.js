@@ -41,6 +41,6 @@ gulp.task('images', function() {
                 interlaced: true
             }))
             .pipe(rename({suffix: '-' + imageSize}))
-            .pipe(gulp.dest(config.banner_images_build));
+            .pipe(gulp.dest(config.images_build));
     });
 });
