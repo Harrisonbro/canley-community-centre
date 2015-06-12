@@ -12,7 +12,9 @@ var gulp        = require('gulp'),
 
 gulp.task('js', function () {
 
-    gulp.src('./node_modules/fg-loadjs/loadJS.js')
+    gulp.src([config.node_src + '/fg-loadjs/loadJS.js',
+              config.node_src + '/fg-loadcss/loadCSS.js',
+              config.node_src + '/fontfaceobserver/fontfaceobserver.js'])
         .pipe(uglify())
         .pipe(gulp.dest(config.js_build));
 

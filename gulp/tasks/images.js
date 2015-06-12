@@ -20,11 +20,7 @@ var gulp        = require('gulp'),
     rename      = require('gulp-rename'),
     _           = require('underscore');
 
-var imagesSrcs = [
-    config.images_src + '/splash.jpg'
-];
-
-var imageSizes = [
+var bannerImageSizes = [
     400,
     600,
     800,
@@ -35,16 +31,67 @@ var imageSizes = [
     1800,
 ];
 
+var logoImageSizes = [
+    100,
+    300,
+    500,
+    700,
+    900,
+    1100,
+    1300,
+];
+
+var straplineImageSizes = [
+    100,
+    300,
+    500,
+    700,
+    900,
+    1100,
+    1300,
+    1500,
+    1700,
+    1900,
+    2100,
+    2300,
+    2500,
+    2700,
+    2900,
+];
+
 gulp.task('images', function() {
-    _.each(imageSizes, function(imageSize) {
-        gulp.src(imagesSrcs)
+    _.each(bannerImageSizes, function(imageSize) {
+        gulp.src(config.images_src + '/splash.jpg')
             .pipe(imageResize({ width : imageSize }))
             .pipe(imagemin({
-                optimizationLevel: 3,
                 progressive: true,
                 interlaced: true
             }))
             .pipe(rename({suffix: '-' + imageSize}))
             .pipe(gulp.dest(config.images_build));
     });
+
+    _.each(logoImageSizes, function(imageSize) {
+        gulp.src(config.images_src + "/logo.png")
+            .pipe(imageResize({ width : imageSize }))
+            .pipe(imagemin({
+                optimizationLevel: 7,
+            }))
+            .pipe(rename({suffix: '-' + imageSize}))
+            .pipe(gulp.dest(config.images_build));
+    });
+
+    _.each(straplineImageSizes, function(imageSize) {
+        gulp.src(config.images_src + "/strapline.png")
+            .pipe(imageResize({ width : imageSize }))
+            .pipe(imagemin({
+                optimizationLevel: 7,
+            }))
+            .pipe(rename({suffix: '-' + imageSize}))
+            .pipe(gulp.dest(config.images_build));
+    });
+
+    gulp.src(config.images_src + "/**/*.svg")
+        .pipe(imagemin())
+        .pipe(gulp.dest(config.images_build));
 });

@@ -27,5 +27,9 @@
     "normalize.css": "^3.0.3",
     "require-dir": "^0.3.0",
     "underscore": "^1.8.3"
+  },
+  "dependencies": {
+    "fg-loadcss": "^0.1.6",
+    "fontfaceobserver": "^1.4.12"
   }
 }

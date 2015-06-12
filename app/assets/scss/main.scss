@@ -13,6 +13,11 @@ $lrg: 50em;
 
 html {
     box-sizing: border-box;
+    font-family: "Helvetica Neue", arial, sans-serif;
+
+    &.fonts-loaded {
+        font-family: "Open Sans", "Helvetica Neue", arial, sans-serif;
+    }
 }
 
 *,
@@ -47,7 +52,7 @@ html {
 
 // For newer browsers
 html.backgroundsize {
-    background: black url("/public/images/splash-300.jpg?src=css") no-repeat center center fixed;
+    background: black url("/public/images/splash-300.jpg") no-repeat center center fixed;
     background-size: cover;
 
     .splashImg {
@@ -75,29 +80,40 @@ $aspectRatio: 0.6125;
     }
 }
 
-.logo {
-    margin: 0.5em;
-    max-width: 50%;
+/* picture */.logo {
+    margin: 0.5em 0.5em 1em;
+    max-width: 40%;
+    display: inline-block;
 
     @include breakpoint($sml) {
         margin: 1.25em;
-        max-width: 35%;
+        max-width: 25%;
+    }
+
+    @include breakpoint($lrg) {
+        margin: 2em;
+        width: 19em;
     }
 }
 
-.strapline {
-    display: block;
-    margin: 0 0.5em 2em;
-    max-width: 100%;
-
-    @include breakpoint($sml) {
-        margin: 0 auto 3em;
-        max-width: 80%;
-    }
+.strapline__container {
+    text-align: center;
+}
+/* picture */.strapline {
+    display: inline-block;
+    margin: 1em 0.5em 2em;
+    width: 100%;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 1));
 
     @include breakpoint($med) {
-        margin: 0 auto 4em;
-        max-width: 65%;
+        margin: 1em auto 3em;
+        width: 90%;
+    }
+
+    @include breakpoint($lrg) {
+        margin: 1em auto 4em;
+        width: 65%;
+        max-width: 80em;
     }
 }
 

@@ -12,13 +12,22 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- TODO: Place favicon.ico, tile.png, tile-wide.png, and apple-touch-icon.png in the root directory -->
 
-        <script type="text/javascript">@@include('./public/js/loadJS.js')</script>
-        <script type="text/javascript">@@include('./public/js/modernizr-custom.js')</script>
         <script type="text/javascript">
+            @@include('./public/js/modernizr-custom.js')
+            @@include('./public/js/loadJS.js')
+            @@include('./public/js/loadCSS.js')
+            @@include('./public/js/fontfaceobserver.js')
+
             if ( ! Modernizr.sizes || ! Modernizr.srcset)
             {
                 loadJS('https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.1/picturefill.min.js');
             }
+
+            loadCSS("https://fonts.googleapis.com/css?family=Open+Sans");
+
+            var fontObserver = new FontFaceObserver('Open Sans').check().then(function () {
+                document.documentElement.className += " fonts-loaded";
+            }, function () {});
 
             function debounce(func, wait, immediate) {
                 var timeout;
@@ -46,6 +55,7 @@
         <div id="splashImgContainer"></div>
 
         <script type="text/javascript">
+            // TODO: Add <video> comments for IE9
             (function () {
                 if (Modernizr.backgroundsize === true) { return; }
 
@@ -91,18 +101,47 @@
             }());
         </script>
 
-        <!-- <img class="splashImg" id="splashImg"
-             srcset="/public/images/splash-400.jpg?src=imgtag 400w,
-                     /public/images/splash-600.jpg?src=imgtag 600w,
-                     /public/images/splash-800.jpg?src=imgtag 800w,
-                     /public/images/splash-1000.jpg?src=imgtag 1000w,
-                     /public/images/splash-1200.jpg?src=imgtag 1200w,
-                     /public/images/splash-1400.jpg?src=imgtag 1400w,
-                     /public/images/splash-1800.jpg?src=imgtag 1800w" /> -->
+        <picture class="logo">
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source type="image/svg+xml" srcset="/public/images/logo.svg">
+        <!--[if IE 9]></video><![endif]-->
+            <img
+              sizes="(min-width: 50em) 19em, (min-width: 20em) 25vw, 40vw"
+              srcset="/public/images/logo-100.png 100w,
+                      /public/images/logo-300.png 300w,
+                      /public/images/logo-500.png 500w,
+                      /public/images/logo-700.png 700w,
+                      /public/images/logo-900.png 900w,
+                      /public/images/logo-900.png 1100w,
+                      /public/images/logo-900.png 1300w"
+              alt="Canley Community Centre">
+        </picture>
 
-        <img class="logo" src="http://placehold.it/180x100?text=logo">
-
-        <img class="strapline" src="http://placehold.it/1000x300?text=strapline">
+        <div class="strapline__container">
+        <picture class="strapline">
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source type="image/svg+xml" srcset="/public/images/strapline.svg">
+        <!--[if IE 9]></video><![endif]-->
+            <img
+              sizes="(min-width: 50em) 65em, (min-width: 32em) 90vw, 100vw"
+              srcset="/public/images/strapline-100.png 100w,
+                      /public/images/strapline-300.png 300w,
+                      /public/images/strapline-500.png 500w,
+                      /public/images/strapline-700.png 700w,
+                      /public/images/strapline-900.png 900w,
+                      /public/images/strapline-1100.png 1100w,
+                      /public/images/strapline-1300.png 1300w,
+                      /public/images/strapline-1500.png 1500w,
+                      /public/images/strapline-1700.png 1700w,
+                      /public/images/strapline-1900.png 1900w,
+                      /public/images/strapline-2100.png 2100w,
+                      /public/images/strapline-2300.png 2300w,
+                      /public/images/strapline-2500.png 2500w,
+                      /public/images/strapline-2700.png 2700w,
+                      /public/images/strapline-2900.png 2900w"
+              alt="Never say you can't! You can in Canley.">
+        </picture>
+        </div>
 
         <div class="content  content--main">
             <p>The Canley Community Centre is under new management and a relaunch is just around the corner.</p>
