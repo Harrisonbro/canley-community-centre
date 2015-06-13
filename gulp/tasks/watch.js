@@ -28,7 +28,11 @@ gulp.task('watch', ['browser-sync'], function () {
     /**
      * Recompile HTML src when it changes
      */
-    gulp.watch('./indexSrc.html', ['build-html']);
+    gulp.watch([
+        './indexSrc.html',
+        './public/css/main.css',
+        './public/css/main.min.css'
+    ], ['build-html']);
 
     /**
      * Reload browser when PHP or HTML files change

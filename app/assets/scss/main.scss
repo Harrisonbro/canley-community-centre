@@ -166,10 +166,12 @@ a,
     border-bottom: 1px solid mix($text, black, 80%);
     text-decoration: none;
 
-    &:hover,
-    &:active {
+    a:hover &,
+    a:active &,
+    a:focus & {
         color: white;
         border-color: white;
+        background: rgba(white, 0.25);
     }
 }
 
@@ -217,7 +219,7 @@ a,
 }
 
 /* a */.contact-link {
-    margin: 0.5em;
+    padding: 1em;
     border: none;
     display: block;
 
@@ -232,6 +234,13 @@ a,
     padding: 0.25em 0.5em;
     border: none;
     display: inline-block;
+    border-radius: 0.5em;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: rgba(white, 0.25);
+    }
 }
 
 .inlinesvg .social-link__text {

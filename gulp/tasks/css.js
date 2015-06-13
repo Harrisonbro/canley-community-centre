@@ -31,11 +31,3 @@ gulp.task('css', function() {
         .pipe(reload({stream:true}))
         .pipe(gulp.dest(config.css_build));
 });
-
-var sassErrorCb = function(error) {
-    gutil.log( gutil.colors.red('[Libsass error] "' + error.message + '"'),
-               gutil.colors.cyan("in " + error.file + ":"+ error.line) );
-    gutil.beep();
-
-    this.emit('end');
-};
