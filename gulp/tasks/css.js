@@ -21,9 +21,8 @@ gulp.task('css', function() {
                 config.bower_src + '/breakpoint-sass/stylesheets'
             ],
             outputStyle: 'expanded',
-            sourceComments: 'normal',
-            onError: sassErrorCb
-        }))
+            sourceComments: 'normal'
+        }).on('error', libsass.logError))
         .pipe(autoprefix('last 10 version'))
         .pipe(reload({stream:true}))
         .pipe(gulp.dest(config.css_build))

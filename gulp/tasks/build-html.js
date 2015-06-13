@@ -15,8 +15,8 @@ gulp.task('build-html', function() {
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(minifyHTML())
-        .pipe(minifyInline())
+        // .pipe(minifyHTML())
+        // .pipe(minifyInline())
         .pipe(rename('index.html'))
         .pipe(gulp.dest('./'));
 });

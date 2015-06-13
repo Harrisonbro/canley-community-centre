@@ -13,7 +13,8 @@
     "tests": [
         "backgroundsize",
         "srcset",
-        "sizes"
+        "sizes",
+        "inlinesvg"
     ],
     "excludeTests": [ ],
     "crawl": false,

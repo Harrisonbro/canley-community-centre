@@ -16,18 +16,23 @@
             @@include('./public/js/modernizr-custom.js')
             @@include('./public/js/loadJS.js')
             @@include('./public/js/loadCSS.js')
-            @@include('./public/js/fontfaceobserver.js')
 
             if ( ! Modernizr.sizes || ! Modernizr.srcset)
             {
+                document.createElement( "picture" );
+
                 loadJS('https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.1/picturefill.min.js');
             }
 
-            loadCSS("https://fonts.googleapis.com/css?family=Open+Sans");
+            loadCSS("https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700");
 
-            var fontObserver = new FontFaceObserver('Open Sans').check().then(function () {
-                document.documentElement.className += " fonts-loaded";
-            }, function () {});
+            if (Modernizr.backgroundsize === true) {
+                @@include('./public/js/fontfaceobserver.js')
+
+                var fontObserver = new FontFaceObserver('Open Sans').check().then(function () {
+                    document.documentElement.className += " fonts-loaded";
+                }, function () {});
+            }
 
             function debounce(func, wait, immediate) {
                 var timeout;
@@ -59,14 +64,8 @@
             (function () {
                 if (Modernizr.backgroundsize === true) { return; }
 
-                console.log( "happening..." );
-
                 var img = new Image(),
                     container = document.getElementById('splashImgContainer');
-
-                img.onload = function() {
-                    container.appendChild(img);
-                };
 
                 img.className = "splashImg";
                 img.id = "splashImg";
@@ -78,8 +77,13 @@
                              "/public/images/splash-1400.jpg?src=imgtag 1400w," +
                              "/public/images/splash-1800.jpg?src=imgtag 1800w";
 
+                container.appendChild(img);
+                picturefill();
+
                 var setSplashImageLayout = debounce(function () {
-                    if (window.getComputedStyle(img).getPropertyValue('display') !== "none")
+                    if ( ! window.getComputedStyle) { return; }
+
+                    if (window.getComputedStyle(img, null).getPropertyValue("display") !== "none")
                     {
                         img.style["margin-left"] = "-" + img.clientWidth/2 + "px";
                         img.style.left = "50%";
@@ -101,68 +105,104 @@
             }());
         </script>
 
-        <picture class="logo">
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-            <source type="image/svg+xml" srcset="/public/images/logo.svg">
-        <!--[if IE 9]></video><![endif]-->
-            <img
-              sizes="(min-width: 50em) 19em, (min-width: 20em) 25vw, 40vw"
-              srcset="/public/images/logo-100.png 100w,
-                      /public/images/logo-300.png 300w,
-                      /public/images/logo-500.png 500w,
-                      /public/images/logo-700.png 700w,
-                      /public/images/logo-900.png 900w,
-                      /public/images/logo-900.png 1100w,
-                      /public/images/logo-900.png 1300w"
-              alt="Canley Community Centre">
-        </picture>
+        <div class="logo__container">
+            <picture class="logo">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                <source type="image/svg+xml" srcset="/public/images/logo.svg">
+            <!--[if IE 9]></video><![endif]-->
+                <img
+                    sizes="(min-width: 50em) 19em, (min-width: 20em) 25vw, 40vw"
+                    srcset="/public/images/logo-100.png 100w,
+                          /public/images/logo-300.png 300w,
+                          /public/images/logo-500.png 500w,
+                          /public/images/logo-700.png 700w,
+                          /public/images/logo-900.png 900w,
+                          /public/images/logo-900.png 1100w,
+                          /public/images/logo-900.png 1300w"
+                    alt="Canley Community Centre">
+            </picture>
+        </div>
 
         <div class="strapline__container">
-        <picture class="strapline">
-        <!--[if IE 9]><video style="display: none;"><![endif]-->
-            <source type="image/svg+xml" srcset="/public/images/strapline.svg">
-        <!--[if IE 9]></video><![endif]-->
-            <img
-              sizes="(min-width: 50em) 65em, (min-width: 32em) 90vw, 100vw"
-              srcset="/public/images/strapline-100.png 100w,
-                      /public/images/strapline-300.png 300w,
-                      /public/images/strapline-500.png 500w,
-                      /public/images/strapline-700.png 700w,
-                      /public/images/strapline-900.png 900w,
-                      /public/images/strapline-1100.png 1100w,
-                      /public/images/strapline-1300.png 1300w,
-                      /public/images/strapline-1500.png 1500w,
-                      /public/images/strapline-1700.png 1700w,
-                      /public/images/strapline-1900.png 1900w,
-                      /public/images/strapline-2100.png 2100w,
-                      /public/images/strapline-2300.png 2300w,
-                      /public/images/strapline-2500.png 2500w,
-                      /public/images/strapline-2700.png 2700w,
-                      /public/images/strapline-2900.png 2900w"
-              alt="Never say you can't! You can in Canley.">
-        </picture>
+          <picture class="strapline">
+          <!--[if IE 9]><video style="display: none;"><![endif]-->
+              <source type="image/svg+xml" srcset="/public/images/strapline.svg">
+          <!--[if IE 9]></video><![endif]-->
+              <img
+                sizes="(min-width: 50em) 65em, (min-width: 32em) 90vw, 100vw"
+                srcset="/public/images/strapline-100.png 100w,
+                        /public/images/strapline-300.png 300w,
+                        /public/images/strapline-500.png 500w,
+                        /public/images/strapline-700.png 700w,
+                        /public/images/strapline-900.png 900w,
+                        /public/images/strapline-1100.png 1100w,
+                        /public/images/strapline-1300.png 1300w,
+                        /public/images/strapline-1500.png 1500w,
+                        /public/images/strapline-1700.png 1700w,
+                        /public/images/strapline-1900.png 1900w,
+                        /public/images/strapline-2100.png 2100w,
+                        /public/images/strapline-2300.png 2300w,
+                        /public/images/strapline-2500.png 2500w,
+                        /public/images/strapline-2700.png 2700w,
+                        /public/images/strapline-2900.png 2900w"
+                alt="Never say you can't! You can in Canley.">
+          </picture>
         </div>
 
         <div class="content  content--main">
             <p>The Canley Community Centre is under new management and a relaunch is just around the corner.</p>
 
             <p>We are busy building links with the community as well as re-building the website, so watch this space.</p>
+
+            <hr />
+
+            <p><strong>Got 2 minutes?</strong></p>
+            <p>We want the Community Centre to be a place that offers what <em>you</em> want it to. Could you answer a few questions so we can make that happen?</p>
+            <a class="button" href="https://www.surveymonkey.com/create/survey/preview?sm=LP_2BteQAVmNyswzGNiCKUSbO63wzDJZqWS2BQMRAkx_2Bc_3D" target="_blank">Tell us what you want to see</a>
         </div>
 
         <div class="content  content--secondary">
             <p>Canley Community Centre, Prior Deram Walk, Coventry, CV4 8FT</p>
 
             <p>
-                <a class="contact-link  contact-link--email  ss-mail" href="mailto:info@canleycommunitycentre.co.uk">info@canleycommunitycentre.co.uk</a>
+                <a class="contact-link  contact-link--email" href="mailto:info@canleycommunitycentre.co.uk">
+                    <span class="contact-link__icon / icon  icon-envelope">@@include('./public/images/icons/envelope.svg')</span>
 
-                <a class="contact-link  contact-link--phone  ss-phone" href="tel:+442476123456">024 7612 3456</a>
+                    <span class="contact-link__text">info@canleycommunitycentre.co.uk</span>
+                </a>
+
+                <a class="contact-link  contact-link--phone" href="tel:+442476123456">
+                    <span class="contact-link__icon / icon  icon-phone">@@include('./public/images/icons/phone.svg')</span>
+
+                    <span class="contact-link__text">024 7612 3456</span>
+                </a>
             </p>
 
             <p>
-                <a class="social-link  ss-icon  ss-social-regular" href="#">Facebook</a>
-                <a class="social-link  ss-icon  ss-social-regular" href="#">Twitter</a>
-                <a class="social-link  ss-icon  ss-social-regular" href="#">YouTube</a>
+                <a class="social-link" href="#">
+                    <span class="social-link__icon / icon  icon-facebook">
+                        @@include('./public/images/icons/facebook-square.svg')
+                    </span>
+
+                    <span class="social-link__text">Facebook</span>
+                </a>
+                <a class="social-link" href="#">
+                    <span class="social-link__icon / icon  icon-twitter">
+                        @@include('./public/images/icons/twitter.svg')
+                    </span>
+
+                    <span class="social-link__text">Twitter</span>
+                </a>
+                <a class="social-link" href="#">
+                    <span class="social-link__icon / icon  icon-youtube">
+                        @@include('./public/images/icons/youtube-play.svg')
+                    </span>
+
+                    <span class="social-link__text">YouTube</span>
+                </a>
             </p>
+
+            <p>Registered Charity number <a href="http://apps.charitycommission.gov.uk/Showcharity/RegisterOfCharities/CharityWithoutPartB.aspx?RegisteredCharityNumber=01234567" target="_blank">01234567</a></p>
         </div>
 
         <!--
