@@ -110,13 +110,13 @@ $aspectRatio: 7/5;
     }
 
     @include breakpoint($sml) {
-        //margin: 1.25em;
-        //width: 25%;
+        margin: 1.25em;
+        width: 25%;
     }
 
     @include breakpoint($lrg) {
-        //margin: 2em;
-        //width: 19em;
+        margin: 2em;
+        width: 19em;
     }
 }
 
@@ -164,12 +164,18 @@ $text: mix(white, black, 100%);
         max-width: 80%;
     }
 
-    width: 30em;
+    width: 40em;
     color: $text;
     text-shadow: 0 1px 1px black, 0 0 0.75em rgba(black, 1);
 
     p {
         margin: 0 0 0.8em 0;
+    }
+}
+
+.lede {
+    @include breakpoint($med) {
+        font-size: 1.2em;
     }
 }
 
