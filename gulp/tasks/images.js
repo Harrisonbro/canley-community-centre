@@ -61,7 +61,7 @@ var straplineImageSizes = [
 
 gulp.task('images', function() {
     _.each(bannerImageSizes, function(imageSize) {
-        gulp.src(config.images_src + '/splash.jpg')
+        gulp.src([config.images_src + '/splash.jpg', config.images_src + '/splash-vertical.jpg'])
             .pipe(imageResize({ width : imageSize }))
             .pipe(imagemin({
                 progressive: true,
