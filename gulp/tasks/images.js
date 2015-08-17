@@ -72,7 +72,7 @@ gulp.task('images', function() {
     });
 
     _.each(logoImageSizes, function(imageSize) {
-        gulp.src(config.images_src + "/logo.png")
+        gulp.src([config.images_src + "/logo.png", config.images_src + "/logo-on-white.png"])
             .pipe(imageResize({ width : imageSize }))
             .pipe(imagemin({
                 optimizationLevel: 7,
@@ -90,12 +90,6 @@ gulp.task('images', function() {
             .pipe(rename({suffix: '-' + imageSize}))
             .pipe(gulp.dest(config.images_build));
     });
-
-    gulp.src(config.images_src + "/logo-on-white.png")
-        .pipe(imagemin({
-            optimizationLevel: 7,
-        }))
-        .pipe(gulp.dest(config.images_build));
 
     gulp.src(config.images_src + "/**/*.svg")
         .pipe(imagemin())
