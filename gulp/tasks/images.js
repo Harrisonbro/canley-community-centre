@@ -91,6 +91,12 @@ gulp.task('images', function() {
             .pipe(gulp.dest(config.images_build));
     });
 
+    gulp.src(config.images_src + "/logo-on-white.png")
+        .pipe(imagemin({
+            optimizationLevel: 7,
+        }))
+        .pipe(gulp.dest(config.images_build));
+
     gulp.src(config.images_src + "/**/*.svg")
         .pipe(imagemin())
         .pipe(gulp.dest(config.images_build));
