@@ -1,0 +1,22 @@
+{
+  "name": "Canley-Community-Centre",
+  "description": "Website for the Canley Community Centre",
+  "main": "",
+  "authors": [
+    "Harrison Brown <harrisonbro@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Harrisonbro/canley-community-centre",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "compass-breakpoint": "breakpoint-sass#~2.6.1"
+  }
+}
